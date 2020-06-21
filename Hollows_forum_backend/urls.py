@@ -17,7 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from Login import views
 from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
 urlpatterns = [
+    path('', include(router.urls)),
     #path('Login/', include('Login.urls')),
     path('admin/', admin.site.urls),
     path('Login/', views.LoginView.as_view(), name='Login'),
