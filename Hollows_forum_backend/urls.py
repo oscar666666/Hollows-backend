@@ -21,9 +21,14 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+#router.register(r'post_thread', views.post_thread)
+#router.register(r'creat_communities', views.creat_communities)
 urlpatterns = [
     path('', include(router.urls)),
     #path('Login/', include('Login.urls')),
+    #path('post_thread', views.post_thread),
+    path('creat_communities', views.creat_communities),
+
     path('admin/', admin.site.urls),
     path('Login/', views.LoginView.as_view(), name='Login'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),

@@ -4,7 +4,7 @@ from datetime import datetime
 # Create your models here.
 class Communities(models.Model):
     Community_Name = models.CharField(max_length=64)
-    CreateDate = models.DateTimeField(default=datetime.now)
+    #CreateDate = models.DateTimeField(default=datetime.now)
 
 class Thread(models.Model):
 
