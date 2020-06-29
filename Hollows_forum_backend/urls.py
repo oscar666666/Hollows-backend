@@ -26,7 +26,7 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     #path('Login/', include('Login.urls')),
-    #path('post_thread', views.post_thread),
+    path('post_thread', views.post_thread),
     path('creat_communities', views.creat_communities),
 
     path('admin/', admin.site.urls),

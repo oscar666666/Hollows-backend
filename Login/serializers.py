@@ -9,6 +9,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['username', 'email', 'groups']
 
 class ThreadSerializer(serializers.HyperlinkedModelSerializer):
+    u_id = serializers.PrimaryKeyRelatedField(
+            queryset=User.objects.all(),
+            many=False)
     class Meta:
         model = Thread
         fields = ['Title','body','Post_time','SoftDelete','u_id']
