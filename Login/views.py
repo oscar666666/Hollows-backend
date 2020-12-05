@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from django.contrib.auth.models import User, Group
 from Login.models import Thread,Communities
@@ -29,24 +30,28 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-
+    permission_classes = (IsAuthenticated,)
 @api_view(["POST"])
 @csrf_exempt
-#@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def post_thread(request):
     serializer = ThreadSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#def index(request):
-#    return HttpResponse("Hello, world. You're at the polls index.")
-#
+
+@api_view(["GET"])
+@csrf_exempt
+def get_threads(request):
+    threads = Thread.objects.all()
+    serializer = ThreadSerializer(threads, many=True)
+    return Response(serializer.data)
 
 
 
 @api_view(["POST"])
-#@csrf_exempt
+@csrf_exempt
 #@permission_classes([IsAuthenticated])
 def creat_communities(request):
     serializer = CommunitiesSerializer(data=request.data)
