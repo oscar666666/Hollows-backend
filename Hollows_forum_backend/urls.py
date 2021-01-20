@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from Login import views
+#from Register import views
+#from Thread import views
+
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework import routers
 
@@ -25,12 +28,13 @@ router.register(r'users', views.UserViewSet)
 #router.register(r'creat_communities', views.creat_communities)
 urlpatterns = [
     path('', include(router.urls)),
-    #path('Login/', include('Login.urls')),
+    path('Login/', include('Login.urls')),
+    path('Register/', include('Register.urls')),
+    #path('Thread/', include('Thread.urls')),
+
     path('post_thread', views.post_thread),
     path('get_thread', views.get_threads),
     path('creat_communities', views.creat_communities),
-
     path('admin/', admin.site.urls),
-    path('Login/', views.LoginView.as_view(), name='Login'),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
 ]

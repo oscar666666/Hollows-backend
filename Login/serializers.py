@@ -8,6 +8,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ['username', 'email', 'groups']
 
+
 class ThreadSerializer(serializers.HyperlinkedModelSerializer):
     u_id = serializers.PrimaryKeyRelatedField(
             queryset=User.objects.all(),

@@ -2,7 +2,7 @@
 
 Start postgresdb
 ```
-sudo service postgresql-9.3 start
+sudo service postgresql start
 ```
 Run Django development mode
 ```
