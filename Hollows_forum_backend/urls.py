@@ -30,10 +30,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('Login/', include('Login.urls')),
     path('Register/', include('Register.urls')),
-    #path('Thread/', include('Thread.urls')),
-
-    path('post_thread', views.post_thread),
-    path('get_thread', views.get_threads),
+    path('Thread/', include('Thread.urls')),
     path('creat_communities', views.creat_communities),
     path('admin/', admin.site.urls),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),

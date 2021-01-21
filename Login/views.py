@@ -31,23 +31,6 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
-@api_view(["POST"])
-@csrf_exempt
-@permission_classes([IsAuthenticated])
-def post_thread(request):
-    serializer = ThreadSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(["GET"])
-@csrf_exempt
-def get_threads(request):
-    threads = Thread.objects.all()
-    serializer = ThreadSerializer(threads, many=True)
-    return Response(serializer.data)
-
 
 
 @api_view(["POST"])

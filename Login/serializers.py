@@ -15,7 +15,7 @@ class ThreadSerializer(serializers.HyperlinkedModelSerializer):
             many=False)
     class Meta:
         model = Thread
-        fields = ['Title','body','Post_time','SoftDelete','u_id']
+        fields = ['Title','body','Post_time', 'u_id']
 class CommunitiesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Communities
