@@ -39,3 +39,15 @@ def get_threads(request):
     serializer = ThreadSerializer(threads, many=True)
     return Response(serializer.data)
 
+@api_view(["DELETE"])
+@csrf_exempt
+@permission_classes([IsAuthenticated])
+def delete_thread(request, pk):
+    try:
+        thread = Thread.objects.get(pk=pk, u_id=request.user.id)
+    except Thread.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    thread.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+    
